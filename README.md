@@ -1,7 +1,7 @@
-Anggota Kelompok Matkul Penerapan Teknologi Internet:
-Rava Radithya Razan
-Stefanus Gratilio
-Zaidan Abdul Aziz
-Apriana Cahya
-Reyva Noor
-Ninandya
+Anggota Kelompok Matkul Penerapan Teknologi Internet: <br>
+<br>Rava Radithya Razan
+<br>Stefanus Gratilio
+<br>Zaidan Abdul Aziz
+<br>Apriana Cahya
+<br>Reyva Noor
+<br>Ninandya
