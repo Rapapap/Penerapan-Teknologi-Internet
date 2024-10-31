@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Controllers;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Home extends BaseController
 {
@@ -206,28 +207,27 @@ class Home extends BaseController
     }
     public function exportExcel()
     {
-        $sisw = $this->siswa->findAll();
+        $buku = $this->model->select_all()->getResult();
 
         $spreadsheet = new Spreadsheet();
 
         $spreadsheet->setActiveSheetIndex(0)
-            ->setCellValue('A1', 'Nis')
-            ->setCellValue('B1', 'Nama Siswa')
-            ->setCellValue('C1', 'Alamat');
+            ->setCellValue('A1', 'Kategori')
+            ->setCellValue('B1', 'Nama Buku')
+            ->setCellValue('C1', 'Harga');
 
         $column = 2;
-
-        foreach ($sisw as $sisdata) {
+        
+        foreach ($buku as $bukdata) {
             $spreadsheet->setActiveSheetIndex(0)
-                ->setCellValue('A' . $column, $sisdata['NIS'])
-                ->setCellValue('B' . $column, $sisdata['NamaSiswa'])
-                ->setCellValue('C' . $column, $sisdata['Alamat']);
-
+                ->setCellValue('A' . $column, $bukdata->kategori)
+                ->setCellValue('B' . $column, $bukdata->nama_buku)
+                ->setCellValue('C' . $column, $bukdata->harga);
             $column++;
         }
 
         $writer = new Xlsx($spreadsheet);
-        $filename =  'Data-Siswa-'. date('Y-m-d-His');
+        $filename =  'Data-Buku-'. date('Y-m-d-His');
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename=' . $filename . '.xlsx');
