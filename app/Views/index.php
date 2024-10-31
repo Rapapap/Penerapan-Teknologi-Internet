@@ -23,6 +23,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Cari</button>
                     <a class="btn btn-secondary" href="<?= base_url() ?>">Reset</a>
+                    <a class="btn btn-success" href="<?= base_url() ?>">Export</a>
 
                 </form>
             </div>
