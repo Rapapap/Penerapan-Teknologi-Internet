@@ -204,4 +204,35 @@ class Home extends BaseController
 
         return redirect()->to(base_url('admin'));
     }
+    public function exportExcel()
+    {
+        $sisw = $this->siswa->findAll();
+
+        $spreadsheet = new Spreadsheet();
+
+        $spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('A1', 'Nis')
+            ->setCellValue('B1', 'Nama Siswa')
+            ->setCellValue('C1', 'Alamat');
+
+        $column = 2;
+
+        foreach ($sisw as $sisdata) {
+            $spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('A' . $column, $sisdata['NIS'])
+                ->setCellValue('B' . $column, $sisdata['NamaSiswa'])
+                ->setCellValue('C' . $column, $sisdata['Alamat']);
+
+            $column++;
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        $filename =  'Data-Siswa-'. date('Y-m-d-His');
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename=' . $filename . '.xlsx');
+        header('Cache-Control: max-age=0');
+
+        $writer->save('php://output');
+    }
 }

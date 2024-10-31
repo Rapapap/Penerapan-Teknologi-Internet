@@ -43,6 +43,7 @@ $routes->get('/admin/create', 'Home::tambah');
 $routes->get('/admin/create/(:any)', 'Home::tambah/$1');
 $routes->post('/admin/create', 'Home::simpan');
 $routes->get('/pengadaan', 'Home::pengadaan');
+$routes->get('/report', 'Home::exportExcel');
 
 /*
  * --------------------------------------------------------------------
