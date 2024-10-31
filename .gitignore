@@ -1,0 +1,4 @@
+*.log
+debugbar_*.json
+ci_*
+.env
